@@ -60,8 +60,6 @@ void returnState(){ //returns the locked/unlocked state of door
 void unlock(){ //unlocks door
   if(locked){ //checks to see if the door is locked
     right();
-    delay(lockTime);
-    halt();
     locked = false;
     Serial.println("unlocked"); //resets the lock variable
   }
@@ -73,8 +71,6 @@ void unlock(){ //unlocks door
 void lock(){      
   if(locked == false){ //checks to see if door is unlocked
     left();
-    delay(lockTime);  //locktime will be in MS, want to change so we can pass integer seconds?
-    halt();
     locked = true;
     Serial.println("locked"); //resets lock variable
   }
