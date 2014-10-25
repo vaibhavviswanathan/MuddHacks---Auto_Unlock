@@ -4,7 +4,7 @@ import sys
 import serial
 import argparse
 
-ser = serial.Serial('/dev/ttyAMA0', 9600)
+ser = serial.Serial('/dev/ttyUSB0', 9600)
 
 ########## parser definition ##########
 
@@ -39,7 +39,7 @@ def get_state():
     locked = 5
     while locked == 5:
         locked = ser.readline()
-    if locked = 0:
+    if locked == 0:
         lock = "locked"
     else:
         lock = "unlocked"
@@ -56,13 +56,11 @@ def set_state(state):
 # Throws SerialError.
 def lock():
     ser.write('1')
-    pass
 
 
 # Throws SerialError.
 def unlock():
     ser.write('0')
-    pass
 
 
 ########## main ##########
@@ -82,4 +80,4 @@ def main():
         exstat = 1
     exit(exstat)
 
-if __name__ == "__main__": main()
+#if __name__ == "__main__": main()
