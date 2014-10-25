@@ -80,4 +80,4 @@ def main():
         exstat = 1
     exit(exstat)
 
-#if __name__ == "__main__": main()
+if __name__ == "__main__": main()
