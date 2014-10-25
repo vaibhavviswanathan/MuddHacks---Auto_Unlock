@@ -62,6 +62,7 @@ void unlock(){ //unlocks door
     right();
     locked = false;
     Serial.println("unlocked"); //resets the lock variable
+    generateFlash(1); //flashes LED
   }
   else{
     Serial.println("error"); //returns error if already unlocked
@@ -73,6 +74,7 @@ void lock(){
     left();
     locked = true;
     Serial.println("locked"); //resets lock variable
+    generateFlash(2); //flashes LED twice
   }
   else{
     Serial.println("error"); //returns error if already locked
@@ -91,8 +93,11 @@ void left() //turns motor left
 
 void generateFlash(int num) {
   pinMode(LED, OUTPUT);
-  for (i=0, i<num, i++){
+  for (int i=0; i < num; i++){
     digitalWrite(LED, HIGH);
     delay(500);
     digitalWrite(LED, LOW);
+    delay(500);
   }
+}
+

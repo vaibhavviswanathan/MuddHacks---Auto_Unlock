@@ -4,6 +4,7 @@ import sys
 import serial
 import argparse
 
+ser = serial.Serial('/dev/ttyAMA0', 9600)
 
 ########## parser definition ##########
 
