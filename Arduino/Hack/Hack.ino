@@ -9,7 +9,7 @@
 
 #include <Servo.h>
 #define SERVOPIN 10
-
+#define LED 16
 
 boolean locked = true; //whether the door is locked or not
 int piRead; //stores the input from raspberry pi
@@ -89,3 +89,10 @@ void left() //turns motor left
   turnServo(lockNum);
 }
 
+void generateFlash(int num) {
+  pinMode(LED, OUTPUT);
+  for (i=0, i<num, i++){
+    digitalWrite(LED, HIGH);
+    delay(500);
+    digitalWrite(LED, LOW);
+  }
