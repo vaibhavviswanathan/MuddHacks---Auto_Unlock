@@ -54,6 +54,7 @@ void turnServo(int deg){ //rotates servo to designated degrees
 }
 
 void returnState(){ //returns the locked/unlocked state of door
+  delay(500);
   Serial.println(locked);
 }
 
