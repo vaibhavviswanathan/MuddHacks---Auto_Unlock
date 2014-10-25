@@ -2,9 +2,9 @@
 //Auto-Unlock Door
 //Team Members: Nathan Miller, Eric Mueller, Rohan Nagpal, Vai Viswanathan
 
-// 100 is unlocked
-//  is locked
-
+// 0 is the command for unlocked
+// 1 is command for locked
+//2 is command for getState
 #include <Servo.h>
 #define SERVOPIN 10
 #define RASPI 13 //defines the digital port the raspberry pi uses
@@ -15,10 +15,10 @@
 int powerLevel = 225; //sets motor power level to 225
 int lockTime = 250; //time to turn lock
 boolean locked = true; //whether the door is locked or not
-int piRead;
-Servo servo;
-int lockNum = 115;
-int unlockNum = 25;
+int piRead; //stores the input from raspberry pi
+Servo servo; 
+int lockNum = 115; //servo value to lock door
+int unlockNum = 25; //servo value to unlock door
 
 
 void setup(){
@@ -33,10 +33,10 @@ void loop()
   
 }
 
-void handleInput(){
-  if (Serial.available()){
-    piRead = Serial.read(); 
-    if(piRead == 0){
+void handleInput(){ //handles input from raspberry pi
+  if (Serial.available()){ //checks to see if there is a reading from the pi
+    piRead = Serial.read() - '0'; 
+    if(piRead == 0){ 
       unlock();
     }
     if(piRead == 1){
@@ -49,17 +49,17 @@ void handleInput(){
   
 }
 
-void initServo(){
+void initServo(){ //initializes servo
   pinMode(SERVOPIN, OUTPUT);
   servo.attach(SERVOPIN);
 }
 
-void turnServo(int deg){
+void turnServo(int deg){ //rotates servo to designated degrees
   initServo();
   servo.write(deg);
 }
 
-void returnState(){
+void returnState(){ //returns the locked/unlocked state of door
   Serial.println(locked);
 }
 
