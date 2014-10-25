@@ -34,7 +34,7 @@ class SerialError(Exception):
 # Returns either the string 'locked' or 'unlocked'.
 # Throws SerialError.
 def get_state():
-    # TODO
+    ser.write('2')
     return "locked"
 
 
@@ -47,13 +47,13 @@ def set_state(state):
 
 # Throws SerialError.
 def lock():
-    # TODO
+    ser.write('1')
     pass
 
 
 # Throws SerialError.
 def unlock():
-    # TODO
+    ser.write('0')
     pass
 
 
