@@ -7,13 +7,14 @@ function handle(request, response) {
     response.writeHead(200, {"Content-Type": "text/html"});
 
     var path = url.parse(request.url).pathname;
+    var child;
 
-    if (path === 'lock') {
-	var child = subproc.spawn('./python/talk_to_arduino.py',
-				  ['-s', 'locked']);
-    } else if (path === 'unlock') {
-	var child = subproc.spawn('./python/talk_to_arduino.py',
+    if (path === 'unlock') {
+	child = subproc.spawn('./python/talk_to_arduino.py',
 				  ['-s', 'unlocked']);
+    } else {
+	child = subproc.spawn('./python/talk_to_arduino.py',
+				  ['-s', 'locked']);
     }
 
     /*
@@ -30,8 +31,9 @@ function handle(request, response) {
         console.log('stderr: ' + data);
     });
 
-    child.on('close', function (code) {
-        console.log('child process exited with code ' + code);
+    child.on('close', function (code, signal) {
+        console.log('child process exited on signal ' + signal +
+		    ' with code ' + code);
     });
 
     child.on('error', function (err) {

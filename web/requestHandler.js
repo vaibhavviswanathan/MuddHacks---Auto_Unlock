@@ -9,8 +9,8 @@ function handle(request, response) {
 
     handlers["/"] = home.handle;
     handlers["/state"] = get_state.handle;
-    handlers["/lock"] = set_state.handle_lock;
-    handlers["/unlock"] = set_state.handle_unlock;
+    handlers["/lock"] = set_state.handle
+    handlers["/unlock"] = set_state.handle;
     handlers["error"] = error.handle;
 
     var path = url.parse(request.url).pathname;
