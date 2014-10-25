@@ -37,9 +37,13 @@ class SerialError(Exception):
 def get_state():
     ser.write('2')
     locked = 5
-    while locked = 5:
+    while locked == 5:
         locked = ser.readline()
-    return locked
+    if locked = 0:
+        lock = "locked"
+    else:
+        lock = "unlocked"
+    return lock
 
 
 def set_state(state):
