@@ -1,7 +1,7 @@
 var subproc = require('child_process');
 
 function handle(request, response) {
-    console.log("Request handler 'exec' was called.");
+    console.log("Request handler 'set_state' was called.");
 
     response.writeHead(200, {"Content-Type": "text/html"});
 
