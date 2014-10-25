@@ -5,7 +5,7 @@ function handle(request, response) {
 
     response.writeHead(200, {"Content-Type": "text/html"});
 
-    var child = subproc.spawn('./python/test.py');
+    var child = subproc.spawn('./python/talk_to_arduino.py', ['-g']);
 
     /*
     child.stdout.on('data', function(data){
@@ -24,6 +24,10 @@ function handle(request, response) {
 
     child.on('close', function (code) {
 	console.log('child process exited with code ' + code);
+    });
+
+    child.on('error', function (err) {
+	console.log('get_state: got error ', err);
     });
 }
 
